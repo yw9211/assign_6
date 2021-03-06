@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Amicable Numbers</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Fascinate&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Hind&display=swap" rel="stylesheet">
+    <script language="javascript">
+      function getFactors(num)
+      {
+        var factors = new Array();
+        var total = 0;
+        for(var i = 1; i < num; i++) 
+        {
+          if (num % i == 0){
+            factors.push(i);
+            total += i;
+          }
+        }
+        factors.push(total);
+        return factors;
+      }
+      
+      function checkNumbers() 
+      {
+        num1 = parseInt(document.getElementById("number1").value);
+        num2 = parseInt(document.getElementById("number2").value);
+
+        var num1factors = getFactors(num1);
+        var num2factors = getFactors(num2);
+        
+        var factorsList1 = num1 + " factors: ";
+        for (var x = 0; x < num1factors.length - 1; x++) {
+          factorsList1 = factorsList1 + num1factors[x] + " ";
+        }
+        var factorsList2 = num2 + " factors: ";
+        for (var y = 0; y < num2factors.length - 1; y++) {
+          factorsList2 = factorsList2 + num2factors[y] + " ";
+        }
+        alert(factorsList1 + "\n" + factorsList2);
+        
+        if ((num2 == num1factors[num1factors.length - 1]) && (num1 == num2factors[num2factors.length - 1])) {
+          document.getElementById("box").innerHTML= "The numbers: " + num1 + " and " + num2 + " are amicable";
+        } else {
+          document.getElementById("box").innerHTML= "The numbers: " + num1 + " and " + num2 + " are not amicable";
+        }
+      }
+      
+    </script>
+  </head>
+  <body>
+    <form>
+      <h1>Amicable Numbers Checker</h1>
+      Number 1:
+      <input type="text" id="number1">
+      Number 2:
+      <input type="text" id="number2">
+      <br>
+      <input type="button" value="Press Me" onclick="checkNumbers()" id="btn">
+      <div id="box">&nbsp;</div>
+    </form>
+  </body>
+</html>
